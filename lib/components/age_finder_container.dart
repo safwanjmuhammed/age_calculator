@@ -9,37 +9,32 @@ class AgeFinderContainer extends StatefulWidget {
 }
 
 class _AgeFinderContainerState extends State<AgeFinderContainer> {
-  final agecontroller = TextEditingController();
+  TextEditingController agecontroller = TextEditingController();
   int ageNowx = 0;
   int monthsx = 0;
   int daysx = 0;
 
-  getAgedata() {
-    List<int> data = findAge(agecontroller.text);
+  void getAgeData() {
+    List<int> data = findAge(agecontroller.text, context);
     setState(() {
       ageNowx = data[0];
       monthsx = data[1];
       daysx = data[2];
+      showDialog(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              children: [
+                Container(
+                  height: 100,
+                  width: 50,
+                )
+              ],
+            );
+          });
       print(daysx.toString());
     });
   }
-
-  // findAge(String age) {
-  //   final currentDate = DateTime.now();
-  //   final parsedDate = DateTime.parse(age);
-  //   final ageNow = currentDate.year - parsedDate.year;
-  //   final months = ageNow * 12;
-  //   final days = currentDate.day - parsedDate.day;
-
-  //   setState(() {
-  //     ageNowx = ageNow;
-  //     monthsx = months;
-  //     daysx = days;
-  //   });
-  //   print(days);
-  //   print(ageNow.toString());
-  //   print(months.toString());
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +75,8 @@ class _AgeFinderContainerState extends State<AgeFinderContainer> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 40, 41, 42)),
                   onPressed: () {
-                    findAge(agecontroller.text);
-                    getAgedata();
+                    findAge(agecontroller.text, context);
+                    getAgeData();
                   },
                   child: const Text(
                     'Find your age',
