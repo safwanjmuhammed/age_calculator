@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 List<int> findAge(String age, BuildContext context) {
@@ -19,5 +17,5 @@ List<int> findAge(String age, BuildContext context) {
           style: const TextStyle(color: Color(0xffD8D9DA)),
         )));
   }
-  throw Exception('FUCKED');
+  throw Exception('FAILED');
 }
